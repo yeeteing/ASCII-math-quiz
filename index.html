@@ -1,0 +1,145 @@
+<html>
+    <head>
+       
+        <style>
+           
+            #try{
+                text-align: center;
+            }
+            .incorrect{
+                color: red;
+            }
+        </style>
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>  
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+         
+        <div id="try"></div>
+
+        <script type="text/babel">
+
+            //Create addition quizes 
+            class Quiz extends React.Component{
+                constructor(props){
+                super(props);
+                this.state={
+                    
+                    num1:String.fromCharCode(Math.floor(Math.random()*(+90 - +65)+ +65)),
+                    num2:String.fromCharCode(Math.floor(Math.random()*(+90 - +65)+ +65)),
+                    response:"",
+                    score:0,
+                    incorrect:false,
+                    help:""
+                   
+                }}
+                renderWin(){
+                    return(
+                        <h1>Win!</h1>
+                    )
+                }
+                renderProblem(){
+                    return(
+                        <div>
+                            <h1 className={this.state.incorrect?"incorrect":""}>{this.state.num1}+{this.state.num2}</h1>
+                            <input onKeyPress={this.answer} onChange={this.updateRes} value={this.state.response} />
+                            <p>Your score is {this.state.score}.</p>
+                            <p>You will win if your score is 3!</p>
+                            <button onClick={this.convert}>Help</button>
+                            <div>{this.state.help}</div>
+                            
+                        </div>
+                        
+                    );
+                }
+                render(){
+                    if(this.state.score==3){
+                        return this.renderWin()
+                    }
+                    else{return this.renderProblem()}
+                }
+                
+                convert=()=>{
+                    let ascii=<iframe src="converter.html"></iframe>
+                    this.setState({
+                        help:ascii
+                    })
+                }
+
+                updateRes=(event)=>{
+                    this.setState({
+                        response: event.target.value
+                    });
+                }
+                answer=(event)=>{
+                    if (event.key==="Enter") {
+                        if(parseInt(this.state.response) ===(this.state.num1.charCodeAt(0)+this.state.num2.charCodeAt(0))){
+                            this.setState({
+                                num1:String.fromCharCode(Math.floor(Math.random()*(+90 - +65)+ +65)),
+                                num2:String.fromCharCode(Math.floor(Math.random()*(+90 - +65)+ +65)),
+                                response:"",
+                                score:this.state.score+1,
+                                incorrect:false,
+                                help:""
+                            })
+                        }
+                        else{
+                            this.setState({
+                                response:"",
+                                incorrect:true
+                            })
+                        }
+                        
+                    }
+                }
+
+            } 
+            class App extends React.Component{
+                constructor(props){
+                    super(props);
+                    this.state={
+                        page:0
+                    }
+                }
+                renderBegin(){
+                    return(
+                        <div>
+                            <h1>Welcome to ASCII A-Z (65-90) Quiz Game</h1>
+                            <h3>You need to do simple addition calculation by converting A-Z character to Decimal Value in ASCII.</h3>
+                            <p>If you need help, you can press the <strong>Help</strong> button for hints.</p>
+                            <button onClick={this.start}>Agree</button>                            
+                        </div>
+                    )
+                }
+
+                render(){
+                    if(this.state.page===0){
+                        return this.renderBegin();
+                    }
+                    else if(this.state.page===1){
+                        return(
+                            <div>
+                                <Quiz/>
+                                
+                            </div>
+
+                        )
+                    }
+                    
+                   
+                }
+                
+                start=()=>{
+                    this.setState({
+                        page:this.state.page+1
+                    })
+                }
+                
+            }
+            ReactDOM.render(<App/>,document.querySelector("#try"));
+    
+        </script>
+
+    </body>
+</html>
