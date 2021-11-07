@@ -11,13 +11,13 @@ First, the user has to figure out what numerical representation the ASCII codes 
 
 
 
-### Initial Page
+### Initial Page.
 ![Initial Page](https://github.com/yeeteing/ASCII-math-quiz/blob/master/assets/initialPG.png)
 
 ### Question Page. This happen when user press **Agree** button from "Intial Page"(_see picture above_)
 ![Question Page](https://github.com/yeeteing/ASCII-math-quiz/blob/master/assets/2ndPG.png)
 
-### Tips being pop-up, when user click **help** button
+### Tips being pop-up, when user click **help** button.
 ![Help Pop Up](https://github.com/yeeteing/ASCII-math-quiz/blob/master/assets/helpPOP.png)
 
 ### If the user entered the wrong answer. The text will changes to **RED**.
