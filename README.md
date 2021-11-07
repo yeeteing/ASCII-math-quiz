@@ -7,7 +7,7 @@ This is a very basic website for me to practice ReactJS.
 
 It generates interactive math questions with ASCII code. 
 
-First, the user has to figure out what numerical representation the ASCII codes are. Then, solve the mathematical question with the numerical representation.
+First, the user has to figure out what number the ASCII codes are. Then, solve the mathematical question with the numeber.
 
 
 
